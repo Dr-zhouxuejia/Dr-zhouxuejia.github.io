@@ -359,6 +359,14 @@
 <h3 id="新建博客"><a href="#新建博客" class="headerlink" title="新建博客"></a>新建博客</h3><p>新建的博客存放在<em>_posts</em>目录下</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo new post &lt;title&gt;</span><br></pre></td></tr></table></figure>
 
+<h1 id="2020-02-03"><a href="#2020-02-03" class="headerlink" title="2020.02.03"></a>2020.02.03</h1><h2 id="绑定github"><a href="#绑定github" class="headerlink" title="绑定github"></a>绑定github</h2><p>参考 <a href="https://www.jianshu.com/p/0af76a76b279" target="_blank" rel="noopener">https://www.jianshu.com/p/0af76a76b279</a>  </p>
+<h3 id="生成ssh-keys"><a href="#生成ssh-keys" class="headerlink" title="生成ssh keys"></a>生成ssh keys</h3><p>打开ssh bash,输入如下命令</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh-keygen -t rsa -C &quot;yourmail@qq.com&quot;</span><br></pre></td></tr></table></figure>
+<h3 id="添加ssh-key到github"><a href="#添加ssh-key到github" class="headerlink" title="添加ssh key到github"></a>添加ssh key到github</h3><p>生成的ssh key位于”C:\User\用户名\.ssh”中<br>将id_rsa.pub中的内容粘贴到github中新建ssh key中</p>
+<h3 id="测试"><a href="#测试" class="headerlink" title="测试"></a>测试</h3><p>可以输入下面的命令，看看设置是否成功，<a href="mailto:git@github.com">git@github.com</a>的部分不要修改：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh -T git@github.com</span><br></pre></td></tr></table></figure>
+<h3 id="配置-Deployment"><a href="#配置-Deployment" class="headerlink" title="配置 Deployment"></a>配置 Deployment</h3><p>在_config.yml文件中，找到Deployment，然后按照如下修改，用户名改成你的:<br>需要注意的是：冒号后面记得空一格<br>type: git<br>repo: <a href="mailto:git@github.com">git@github.com</a>:用户名/用户名.github.io.git<br>branch: master  </p>
+<h3 id="本地文件提交到-GitHub-Pages"><a href="#本地文件提交到-GitHub-Pages" class="headerlink" title="本地文件提交到 GitHub Pages"></a>本地文件提交到 GitHub Pages</h3><p>// 删除旧的 public 文件<br>hexo clean<br>// 生成新的 public 文件<br>hexo generate<br>或者<br>hexo g<br>// 开始部署<br>hexo deploye<br>或者<br>hexo d  </p>
 
           
         
@@ -449,28 +457,6 @@
           </span>
 
           
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/" itemprop="url" rel="index">
-                    <span itemprop="name">学习记录</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
 
           
             
@@ -500,11 +486,13 @@
       
         
           
-            <h1 id="simscript学习"><a href="#simscript学习" class="headerlink" title="simscript学习"></a>simscript学习</h1><h2 id="变量"><a href="#变量" class="headerlink" title="变量"></a>变量</h2><h3 id="变量类型"><a href="#变量类型" class="headerlink" title="变量类型"></a>变量类型</h3><ul>
+            <h1 id="simscript学习"><a href="#simscript学习" class="headerlink" title="simscript学习"></a>simscript学习</h1><h2 id="基本结构"><a href="#基本结构" class="headerlink" title="基本结构"></a>基本结构</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">preamble</span><br><span class="line">  &#39;&#39;添加类，集合，变量的定义</span><br><span class="line">end</span><br><span class="line">  &#39;&#39;代码的实现</span><br><span class="line">main</span><br><span class="line">  &#39;&#39;程序执行的入口，一个程序只能有一个</span><br><span class="line">end</span><br></pre></td></tr></table></figure>
+<h2 id="变量"><a href="#变量" class="headerlink" title="变量"></a>变量</h2><h3 id="变量类型"><a href="#变量类型" class="headerlink" title="变量类型"></a>变量类型</h3><ul>
 <li>Integer 整型  </li>
 <li>real, double 单精度和双精度  </li>
 <li>alpha 字符  </li>
 <li>text 字符串  </li>
+<li>pointer 指针</li>
 </ul>
 <h3 id="定义变量"><a href="#定义变量" class="headerlink" title="定义变量"></a>定义变量</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">define x as an integer variable</span><br><span class="line">define x, y as integer variables</span><br></pre></td></tr></table></figure>
 <h3 id="定义数组变量"><a href="#定义数组变量" class="headerlink" title="定义数组变量"></a>定义数组变量</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">define list as an integer, 1-dimensional array</span><br><span class="line">reserve list(*) as 9 (定义数组大小，默认下标从1开始，数值初始化为0)</span><br><span class="line">define table as an integer, 2-dimensional array</span><br><span class="line">reserve table(*,*) as 3 by 5</span><br><span class="line"></span><br><span class="line">dim.f(list)  数组长度</span><br><span class="line">release list 释放内存</span><br></pre></td></tr></table></figure>
@@ -512,10 +500,10 @@
 <h2 id="条件判断"><a href="#条件判断" class="headerlink" title="条件判断"></a>条件判断</h2><table>
 <thead>
 <tr>
-<th align="center"></th>
-<th align="center"></th>
-<th align="center"></th>
-<th align="center"></th>
+<th align="center">数学含义</th>
+<th align="center">键盘输入</th>
+<th align="center">英语缩写</th>
+<th align="center">英语</th>
 </tr>
 </thead>
 <tbody><tr>
@@ -555,14 +543,28 @@
 <td align="center">No Less Than or Not Less Than</td>
 </tr>
 </tbody></table>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">if...</span><br><span class="line">else...</span><br><span class="line">always</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">if...</span><br><span class="line">else...</span><br><span class="line">always (条件判断的结尾)</span><br></pre></td></tr></table></figure>
+<p><em>例：</em></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">if count &gt; 10</span><br><span class="line">	do something</span><br><span class="line">else</span><br><span class="line">	do something</span><br><span class="line">always</span><br></pre></td></tr></table></figure>
 
-<h2 id="循环"><a href="#循环" class="headerlink" title="循环"></a>循环</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">for j&#x3D;1 to 3 do</span><br><span class="line">    	read a</span><br><span class="line">    	write a as i* ,&#x2F;</span><br><span class="line">loop</span><br><span class="line"></span><br><span class="line">until a &#x3D; 2 do</span><br><span class="line">    	read a</span><br><span class="line">loop</span><br></pre></td></tr></table></figure>
+<h2 id="循环"><a href="#循环" class="headerlink" title="循环"></a>循环</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">for j&#x3D;1 to 3 do</span><br><span class="line">    read a</span><br><span class="line">    write a as i* ,&#x2F;</span><br><span class="line">loop</span><br><span class="line"></span><br><span class="line">until a &gt; 2 do</span><br><span class="line">    	read a</span><br><span class="line">loop</span><br></pre></td></tr></table></figure>
 
-<h2 id="方法"><a href="#方法" class="headerlink" title="方法"></a>方法</h2><h3 id="routine"><a href="#routine" class="headerlink" title="routine"></a>routine</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">routine (name) given (given argument list) yielding (yield argument list)</span><br><span class="line"></span><br><span class="line">call (name) given () yielding ()</span><br></pre></td></tr></table></figure>
+<h2 id="函数"><a href="#函数" class="headerlink" title="函数"></a>函数</h2><h3 id="routine"><a href="#routine" class="headerlink" title="routine"></a>routine</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">define (name) as a routine given (given argument list) yielding (yield argument list)</span><br><span class="line">routine (name) given (given argument list) yielding (yield argument list)</span><br><span class="line"></span><br><span class="line">call (name) given () yielding ()</span><br></pre></td></tr></table></figure>
+<p><em>例</em></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">preamble</span><br><span class="line">    &#39;&#39;TODO: Add definitions for classes, sets, entities, variables, etc.</span><br><span class="line">    define x,y as integer variables</span><br><span class="line">    define change as a routine given 1 integer argument yielding 1 integer argument </span><br><span class="line">end</span><br><span class="line">routine change given first yielding second</span><br><span class="line">	first  &#x3D; 10</span><br><span class="line">	second &#x3D; first</span><br><span class="line">	write &quot;first:&quot;, first as t*,i* ,&#x2F;</span><br><span class="line">end</span><br><span class="line">&#x2F;~~</span><br><span class="line"> ~ Implementation code can go here.  For now we will generate a dummy &#39;main&#39; routine</span><br><span class="line"> ~&#x2F;</span><br><span class="line">main</span><br><span class="line">    &#39;&#39;TODO: Write the startup code!</span><br><span class="line">   	</span><br><span class="line">	call change given x yielding y</span><br><span class="line">	</span><br><span class="line">	write &quot;x:&quot;,x as t*,i* ,&#x2F;</span><br><span class="line">	write &quot;y:&quot;,y as t*,i* ,&#x2F;</span><br><span class="line">	read as &#x2F; </span><br><span class="line">end</span><br></pre></td></tr></table></figure>
 
-<h3 id="function"><a href="#function" class="headerlink" title="function"></a>function</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">function (name) given (given argument list)</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;A function cannot have yielded arguments</span><br></pre></td></tr></table></figure>
+<h3 id="function"><a href="#function" class="headerlink" title="function"></a>function</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">define (name) as an integer function given (given argument list)</span><br><span class="line">function (name) given (given argument list)</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;A function cannot have yielded arguments</span><br></pre></td></tr></table></figure>
+<p><em>例</em></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">preamble</span><br><span class="line">    &#39;&#39;TODO: Add definitions for classes, sets, entities, variables, etc.</span><br><span class="line">    define x, y as integer variables</span><br><span class="line">    define change as a integer function given 1 integer argument </span><br><span class="line">end</span><br><span class="line"></span><br><span class="line">function change given first</span><br><span class="line">	first  &#x3D; 10</span><br><span class="line">	write &quot;first:&quot;, first as t*,i* ,&#x2F;</span><br><span class="line">	</span><br><span class="line">	return with first</span><br><span class="line">end</span><br><span class="line">&#x2F;~~</span><br><span class="line"> ~ Implementation code can go here.  For now we will generate a dummy &#39;main&#39; routine</span><br><span class="line"> ~&#x2F;</span><br><span class="line">main</span><br><span class="line">    &#39;&#39;TODO: Write the startup code!</span><br><span class="line">   	</span><br><span class="line">	y &#x3D; change(x)</span><br><span class="line">	write &quot;x:&quot;,x as t*,i* ,&#x2F;</span><br><span class="line">	write &quot;y:&quot;,y as t*,i* ,&#x2F;</span><br><span class="line">	read as &#x2F; </span><br><span class="line">end</span><br></pre></td></tr></table></figure>
 
+<h2 id="输入输出"><a href="#输入输出" class="headerlink" title="输入输出"></a>输入输出</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">read variable </span><br><span class="line">write variable as i* ,&#x2F; (输出整型)(d(*,*)为double,第一个*为输出占位的位数，第二个*为小数保留的位数，t* 为字符串)</span><br><span class="line"></span><br><span class="line">print 1 line with variable thus</span><br><span class="line">***</span><br></pre></td></tr></table></figure>
+
+<h2 id="实体"><a href="#实体" class="headerlink" title="实体"></a>实体</h2><h3 id="temporary-entities（4-4"><a href="#temporary-entities（4-4" class="headerlink" title="temporary entities（4.4)"></a>temporary entities（4.4)</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">preamble</span><br><span class="line">	normally,mode is integer</span><br><span class="line">	temporary entities</span><br><span class="line">		every SHIP has an AGE and a TONNAGE &#39;&#39;定义实体</span><br><span class="line">	define V as 1-dimensional pointer array</span><br><span class="line">	define N,I,YEARS,SUM.TONS as an integer variable</span><br><span class="line">end</span><br><span class="line">main</span><br><span class="line">	read N</span><br><span class="line">	reserve V as N</span><br><span class="line">	for I &#x3D; 1 to N</span><br><span class="line">	do</span><br><span class="line">		create a SHIP called V(I)  &#39;&#39;创建实体</span><br><span class="line">		read AGE (V(I)), TONNAGE (V(I))</span><br><span class="line">	loop</span><br><span class="line">	read YEARS</span><br><span class="line">	for I &#x3D; 1 to N</span><br><span class="line">		with AGE(V(I)) less than YEARS</span><br><span class="line">		add TONNAGE(V(I)) to SUM.TONS</span><br><span class="line">	print 1 line with YEARS, SUM.TONS thus</span><br><span class="line">	Total tonnage of ships less than ** years old is ******</span><br><span class="line">	read as &#x2F;</span><br><span class="line">end</span><br></pre></td></tr></table></figure>
+
+<h3 id="Permanent-Entities-4-5"><a href="#Permanent-Entities-4-5" class="headerlink" title="Permanent Entities(4.5)"></a>Permanent Entities(4.5)</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">preamble</span><br><span class="line">	normally, mode is integer</span><br><span class="line">	permanent entities</span><br><span class="line">		every SHIP has an AGE and a TONNAGE</span><br><span class="line">	define i, years,SUM.TONS as a integer variable	</span><br><span class="line">end</span><br><span class="line">main</span><br><span class="line">	read N.SHIP</span><br><span class="line">	create every SHIP</span><br><span class="line">	for I &#x3D; 1 to N.SHIP</span><br><span class="line">		read AGE(I), TONNAGE(I)</span><br><span class="line">	read YEARS</span><br><span class="line">	for I &#x3D; 1 to N.SHIP</span><br><span class="line">		with AGE(I) less than YEARS add TONNAGE(I) to SUM.TONS</span><br><span class="line">	print 1 line with YEARS, SUM.TONS thus </span><br><span class="line">	Total tonnage of ships less than ** years old is ******</span><br><span class="line">	read as &#x2F;</span><br><span class="line">end</span><br></pre></td></tr></table></figure>
+<h2 id="事件-event"><a href="#事件-event" class="headerlink" title="事件(event)"></a>事件(event)</h2><p>第五章：Discrete Simulation Concept</p>
+<p>举例.sim3版本</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">preamble</span><br><span class="line">	begin class vehicle</span><br><span class="line">		every vehicle has a trip process method </span><br><span class="line">	end</span><br><span class="line">end</span><br><span class="line">methods for the Vehicle class</span><br><span class="line">process method trip </span><br><span class="line">	write as &quot;start&quot; ,&#x2F;</span><br><span class="line">	wait 100 units</span><br><span class="line">	write time.v as d(7,2) ,&#x2F;</span><br><span class="line">end</span><br><span class="line"></span><br><span class="line">main</span><br><span class="line">	define chevy as a vehicle reference variable</span><br><span class="line">	create chevy </span><br><span class="line">	schedule a trip(chevy) now</span><br><span class="line">	start simulation</span><br><span class="line">	read as &#x2F;</span><br><span class="line">end</span><br></pre></td></tr></table></figure>
 
           
         
@@ -665,15 +667,6 @@
               </div>
             
 
-            
-              
-              
-              <div class="site-state-item site-state-tags">
-                <a href="/tags/index.html">
-                  <span class="site-state-item-count">1</span>
-                  <span class="site-state-item-name">标签</span>
-                </a>
-              </div>
             
 
           </nav>
