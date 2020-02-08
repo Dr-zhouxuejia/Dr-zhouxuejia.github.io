@@ -93,7 +93,7 @@
 <meta property="og:site_name" content="zaybl&#39;blog">
 <meta property="og:description" content="2020.02.02安装hexohexo官网   12345npm install hexo-cli -ghexo init blogcd blognpm installhexo server  安装next主题next官网 1git clone https:&#x2F;&#x2F;github.com&#x2F;iissnan&#x2F;hexo-theme-next themes&#x2F;n">
 <meta property="article:published_time" content="2020-02-02T11:29:29.000Z">
-<meta property="article:modified_time" content="2020-02-03T04:43:24.637Z">
+<meta property="article:modified_time" content="2020-02-08T11:51:32.012Z">
 <meta property="article:author" content="zaybl">
 <meta name="twitter:card" content="summary">
 
@@ -141,6 +141,8 @@
 
 
 
+  <script src="https://cdn.jsdelivr.net/npm/jquery/dist/jquery.min.js"></script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome/css/font-awesome.min.css">
 <meta name="generator" content="Hexo 4.2.0"></head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -343,7 +345,7 @@
 <h2 id="安装next主题"><a href="#安装next主题" class="headerlink" title="安装next主题"></a>安装next主题</h2><p><a href="http://theme-next.iissnan.com/getting-started.html" target="_blank" rel="noopener">next官网</a></p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git clone https:&#x2F;&#x2F;github.com&#x2F;iissnan&#x2F;hexo-theme-next themes&#x2F;next</span><br></pre></td></tr></table></figure>
 
-<p>安装完成后,首先配置<strong>站点配置文件</strong>(<em>_config.yml</em>),找到 theme 字段，并将其值更改为 next</p>
+<p>安装完成后,首先配置<strong>站点配置文件</strong>(<em>_config.yml</em>),找到 theme 字段，并将其值更改为  </p>
 <p>运行,本地地址为 <a href="http://localhost:4000" target="_blank" rel="noopener">http://localhost:4000</a></p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo server</span><br></pre></td></tr></table></figure>
 
@@ -364,7 +366,8 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh -T git@github.com</span><br></pre></td></tr></table></figure>
 <h3 id="配置-Deployment"><a href="#配置-Deployment" class="headerlink" title="配置 Deployment"></a>配置 Deployment</h3><p>在_config.yml文件中，找到Deployment，然后按照如下修改，用户名改成你的:<br>需要注意的是：冒号后面记得空一格<br>type: git<br>repo: <a href="mailto:git@github.com">git@github.com</a>:用户名/用户名.github.io.git<br>branch: master  </p>
 <h3 id="本地文件提交到-GitHub-Pages"><a href="#本地文件提交到-GitHub-Pages" class="headerlink" title="本地文件提交到 GitHub Pages"></a>本地文件提交到 GitHub Pages</h3><p>// 删除旧的 public 文件<br>hexo clean<br>// 生成新的 public 文件<br>hexo generate<br>或者<br>hexo g<br>// 开始部署<br>hexo deploye<br>或者<br>hexo d  </p>
-
+<p><strong>注意1：若上面操作失败，则需要提前安装一个扩展：</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install hexo-deployer-git --save</span><br></pre></td></tr></table></figure>
       
     </div>
     
@@ -388,8 +391,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2020/02/02/simscript/" rel="next" title="simscript">
-                <i class="fa fa-chevron-left"></i> simscript
+              <a href="/2020/02/02/simscript/" rel="next" title="simscript学习记录">
+                <i class="fa fa-chevron-left"></i> simscript学习记录
               </a>
             
           </div>
@@ -397,6 +400,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2020/02/07/javascript%E5%9F%BA%E7%A1%80%E5%AD%A6%E4%B9%A0/" rel="prev" title="javascript基础学习">
+                javascript基础学习 <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -477,7 +484,7 @@
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">2</span>
+                  <span class="site-state-item-count">5</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -576,6 +583,7 @@
 
         
       </div>
+      <script src="https://soyawww.github.io/live2d/autoload.js"></script>
     </footer>
 
     
