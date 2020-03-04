@@ -75,7 +75,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="javascript," />
 
 
 
@@ -86,15 +86,16 @@
 
 
 
-<meta name="description" content="学习网站">
+<meta name="description" content="学习网站 promise整理创建Promise对象的构造语法是 123let promose &#x3D; new Promise((resolve,reject)&#x3D;&gt;&amp;#123;    &#x2F;&#x2F;executor &amp;#125;) 传递给 new Promise的函数称之为 executor。当 promise 被创建时，它会被自动调用。它包含生产者代码，这最终会产生一个结果。promise 对象有内部属性">
 <meta property="og:type" content="article">
 <meta property="og:title" content="javascript基础学习">
 <meta property="og:url" content="http://yoursite.com/2020/02/07/javascript%E5%9F%BA%E7%A1%80%E5%AD%A6%E4%B9%A0/index.html">
 <meta property="og:site_name" content="zaybl&#39;blog">
-<meta property="og:description" content="学习网站">
+<meta property="og:description" content="学习网站 promise整理创建Promise对象的构造语法是 123let promose &#x3D; new Promise((resolve,reject)&#x3D;&gt;&amp;#123;    &#x2F;&#x2F;executor &amp;#125;) 传递给 new Promise的函数称之为 executor。当 promise 被创建时，它会被自动调用。它包含生产者代码，这最终会产生一个结果。promise 对象有内部属性">
 <meta property="article:published_time" content="2020-02-07T09:32:40.000Z">
-<meta property="article:modified_time" content="2020-02-07T09:33:45.867Z">
+<meta property="article:modified_time" content="2020-03-04T09:12:16.450Z">
 <meta property="article:author" content="zaybl">
+<meta property="article:tag" content="javascript">
 <meta name="twitter:card" content="summary">
 
 
@@ -340,7 +341,31 @@
 
       
         <p><strong><a href="https://zh.javascript.info/" target="_blank" rel="noopener">学习网站</a></strong></p>
+<h1 id="promise整理"><a href="#promise整理" class="headerlink" title="promise整理"></a>promise整理</h1><h2 id="创建"><a href="#创建" class="headerlink" title="创建"></a>创建</h2><p>Promise对象的构造语法是</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> promose = <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function">(<span class="params">resolve,reject</span>)=&gt;</span>&#123;</span><br><span class="line">    <span class="comment">//executor </span></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<p>传递给 new Promise的函数称之为 executor。当 promise 被创建时，它会被自动调用。它包含生产者代码，这最终会产生一个结果。<br>promise 对象有内部属性：</p>
+<ul>
+<li>state —— 最初是 “pending”，然后被改为 “fulfilled” 或 “rejected”，</li>
+<li>result —— 一个任意值，最初是 undefined。</li>
+</ul>
+<p>当 executor 完成任务时，应调用下列之一：</p>
+<ul>
+<li>resolve(value) —— 说明任务已经完成： 将 state 设置为 “fulfilled”，sets result to value。</li>
+<li>reject(error) —— 表明有错误发生： 将 state 设置为 “rejected”，将 result 设置为 error。</li>
+</ul>
+<p>executor 只会调用 resolve 或 reject。Promise 的最后状态一定会变化。<br>对 resolve 和 reject 的深层调用都会被忽略：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> promise = <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function"><span class="keyword">function</span>(<span class="params">resolve, reject</span>) </span>&#123;</span><br><span class="line">  resolve(<span class="string">"done"</span>);</span><br><span class="line"></span><br><span class="line">  reject(<span class="keyword">new</span> <span class="built_in">Error</span>(<span class="string">"…"</span>)); <span class="comment">// 被忽略</span></span><br><span class="line">  setTimeout(<span class="function"><span class="params">()</span> =&gt;</span> resolve(<span class="string">"…"</span>)); <span class="comment">// 被忽略</span></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
 
+
+<h2 id="“-then”-和-“-catch”"><a href="#“-then”-和-“-catch”" class="headerlink" title="“.then” 和 “.catch”"></a>“.then” 和 “.catch”</h2><p>.then语法</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">promise.then(</span><br><span class="line">    <span class="function"><span class="keyword">function</span>(<span class="params">result</span>)</span>&#123;<span class="comment">/* handle a successful result */</span> &#125;,</span><br><span class="line">    <span class="function"><span class="keyword">function</span>(<span class="params">error</span>)</span>&#123;<span class="comment">/* handle a successful result */</span> &#125;,</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+<p>第一个函数参数在 promise 为 resolved 时被解析，然后得到结果并运行。第二个参数 —— 在状态为 rejected 并得到错误时使用。<br>如果只对成功结果感兴趣的话，我们只为.then使用一个参数即可，如果只对错误错误感兴趣的话，可以使用.then(null,function)或者使用.catch(function)</p>
+<h2 id="promise的返回值"><a href="#promise的返回值" class="headerlink" title="promise的返回值"></a>promise的返回值</h2><ul>
+<li>当Promise的回调函数返回非Promise对象的值时，then和catch都生成一个状态为fulfilled的Promise对象，并把该返回值传入Promise链的下一环节。</li>
+<li>当Promise的回调函数返回值为Promise对象时，生成的Promise对象的状态由被返回的Promise对象决定，传入Promise链下一环节的值也由这个被返回的Promise决定。</li>
+<li>当Promise的回调函数中抛出错误时，then和catch都生成一个状态为rejected的Promise对象，并把抛出的错误对象传入Promise链的下一环节。</li>
+</ul>
+<h1 id="闭包"><a href="#闭包" class="headerlink" title="闭包"></a>闭包</h1>
       
     </div>
     
@@ -354,6 +379,12 @@
     
 
     <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/javascript/" rel="tag"># javascript</a>
+          
+        </div>
       
 
       
@@ -428,8 +459,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -448,7 +488,7 @@
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-count">6</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -465,6 +505,15 @@
               </div>
             
 
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
             
 
           </nav>
@@ -484,6 +533,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#promise整理"><span class="nav-number">1.</span> <span class="nav-text">promise整理</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#创建"><span class="nav-number">1.1.</span> <span class="nav-text">创建</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#“-then”-和-“-catch”"><span class="nav-number">1.2.</span> <span class="nav-text">“.then” 和 “.catch”</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#promise的返回值"><span class="nav-number">1.3.</span> <span class="nav-text">promise的返回值</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#闭包"><span class="nav-number">2.</span> <span class="nav-text">闭包</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
